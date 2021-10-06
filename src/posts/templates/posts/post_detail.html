@@ -1,6 +1,7 @@
 {% extends "base.html"%}
 
 {% block content %}
+<img src="/src/posts/static/posts/Group.png" width="500" height="50"> 
     <div class="row">
         <div class="col">
             <div class="detalles">
@@ -25,8 +26,9 @@
                 <div class="comments">
                     <h4>Comentarios</h4>
                     {% for comment in object.comments %}
-                        <p>{{ comment.content }}
-                        <small>{{ comment.timestamp|timesince }}</small>
+                        <p>
+                            {{ comment.content }}
+                            <small>{{ comment.timestamp|timesince }}</small>
                         </p>
                     {% endfor %}
                 </div>
