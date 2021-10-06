@@ -1,9 +1,36 @@
 {% extends "base.html"%}
 
 {% block content %}
-    <div class="container">
-        <h1>post detail view</h1>
-        {{ object.title }}
-    </div>
+    <div class="row">
+        <div class="col">
+            <div class="detalles">
+                <h4>{{ object.title }}</h4> 
+                <p>
+                    {{ object.content }}
+                </p>
+                <span><i class="fad fa-comment-alt"></i>{{ object.get_comment_count }}</span>
+                <p>
+                    {{ object.publis_date|timesince }} 
+                </p>
+                <form method="POST">
+                    <div class="nameComment">
+                       {% csrf_token %} 
+                    </div>
+                    <div class="contentComment">
+                        {{ form.as_p }}
+                    </div>
+                    <button type="submit"><i class="fas fa-solid fa-paper-plane"></i> Comentar</button>
+                </form>
 
+                <div class="comments">
+                    <h4>Comentarios</h4>
+                    {% for comment in object.comments %}
+                        <p>{{ comment.content }}
+                        <small>{{ comment.timestamp|timesince }}</small>
+                        </p>
+                    {% endfor %}
+                </div>
+            </div>
+        </div> 
+    </div>    
 {% endblock content %}

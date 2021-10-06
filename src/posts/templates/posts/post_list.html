@@ -1,10 +1,28 @@
 {% extends "base.html" %}
+{%load static %}
+<script src="https://kit.fontawesome.com/5a4f612a95.js" crossorigin="anonymous"></script>
+<link href="{% static 'posts/style.css' %}" type="text/css" rel="stylesheet">
 
 {% block content %}
+    <img src="/src/posts/static/posts/Group.png" width="500" height="50"> 
+    <div class="redirect">
+        <a href="/create/">
+          <button type="submit"><i class="fas fa-solid fa-plus"></i> Create</button>
+        </a>
+      </div>
     <div class="container">
         {% for object in object_list %}
-            {{ object.title }}
-        {% end for%}
+            <a href="{{ object.get_absolute_url }}">   
+                <div class="card">
+                    <h4>{{ object.title }}</h4>
+                    <p> {{ object.publis_date|timesince }} </p>
+                    <p class="views">
+                        <span><i class="fad fa-comment-alt"></i>{{ object.get_comment_count }}</span>
+                    </p>
+                </div>
+            </a>
+               
+        {% endfor%}
     </div>
 
 {% endblock content %}
