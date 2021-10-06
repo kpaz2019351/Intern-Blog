@@ -1,0 +1,12 @@
+{% extends "base.html"%}
+
+{% block content %}
+    <div class="container">
+        <h1>ESta es la vista de {{ view_type }} </h1>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p}}
+            <button class="" type="submit">{{ view_type|title }}</button>
+        </form>
+    </div>
+{% endblock content %}
